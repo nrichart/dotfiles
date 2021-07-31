@@ -1,0 +1,1 @@
+/home/richart/dev/for_fun/env_config/env.d/gdb/.gdbinit

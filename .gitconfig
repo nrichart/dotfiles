@@ -1,0 +1,23 @@
+[user]
+    name = Nicolas Richart
+    email = nicolas.richart@epfl.ch
+	signingkey = 53C0230A
+[push]
+    default = simple
+[color]
+    ui = auto
+[alias]
+    akantu-archive = !bash -c 'git archive --format=tar.gz -o ../akantu-$(cat VERSION).tar.gz --prefix=akantu-$(cat VERSION)/ master'
+[commit]
+#	gpgsign = true
+[gpg]
+	program = gpg2
+[core]
+	pager = less -FRKX
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+[rerere]
+	enabled = true

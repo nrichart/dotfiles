@@ -1,0 +1,15 @@
+#!/bin/sh
+
+if [ -e "$HOME"/.config/yadm/bootstrap.local ]; then
+    "$HOME"/.config/yadm/bootstrap.local
+fi
+
+# Because Git submodule commands cannot operate without a work tree, they must
+# be run from within $HOME (assuming this is the root of your dotfiles)
+cd "$HOME" || exit
+
+# Retreives the home folder
+echo "Init submodules"
+yadm submodule update --recursive --init
+
+"$HOME"/.emacs.d/bin/doom init

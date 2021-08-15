@@ -1,0 +1,12 @@
+#!/bin/bash
+
+sudo apt install --yes zsh zsh-syntax-highlighting
+sudo apt install --yes fonts-powerline
+sudo apt install --yes dconf-cli
+
+
+
+shell_=$(grep $USER /etc/passwd | cut -d ':' -f 7)
+if [[ ! "$shell" =~  '.*/zsh' ]]; then
+    sudo chsh -s /usr/bin/zsh $USER
+fi

@@ -7,3 +7,6 @@
 [submodule ".oh-my-zsh"]
 	path = .oh-my-zsh
 	url = https://github.com/ohmyzsh/ohmyzsh.git
+[submodule ".config/yadm/dracula/gnome-terminal"]
+	path = .config/yadm/dracula/gnome-terminal
+	url = https://github.com/dracula/gnome-terminal

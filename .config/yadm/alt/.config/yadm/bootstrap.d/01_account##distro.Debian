@@ -1,0 +1,7 @@
+#!/bin/bash
+
+shell_=$(grep $USER /etc/passwd | cut -d ':' -f 7)
+
+if [[ ! "$shell" =~  '.*/zsh' ]]; then
+    sudo chsh -s /usr/bin/zsh $USER
+fi

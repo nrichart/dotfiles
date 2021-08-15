@@ -1,1 +1,3 @@
-"$HOME"/.emacs.d/bin/doom init
+#!/bin/bash
+
+yes | "$HOME"/.emacs.d/bin/doom install --no-env

@@ -12,7 +12,6 @@ ZSH_THEME="my-agnoster"
 #ZSH_THEME="dracula"
 #POWERLINE_PATH=short
 
-
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 ZSH_HIGHLIGHT_PATTERNS=('rm -rf *' 'fg=white,bold,bg=red')
 
@@ -39,7 +38,7 @@ CASE_SENSITIVE="true"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+# ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
@@ -62,9 +61,6 @@ ZSH_CUSTOM=$HOME/.config/yadm/oh-my-zsh-custom
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git debian battery pip pylint python screen themes zsh_reload zsh-syntax-highlighting z colorize colored-man-pages)
-
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
-ZSH_HIGHLIGHT_PATTERNS=('rm -rf *' 'fg=white,bold,bg=red')
 
 # User configuration
 export EDITOR="emacsclient -c -a /usr/bin/emacs"
@@ -138,3 +134,5 @@ export LC_TIME=fr_CH.UTF-8
 export CCACHE_DIR=${HOME}/.ccache
 export CCACHE_NOHASHDIR=1
 export CCACHE_COMPILERCHECK=content
+
+eval $(dircolors /home/richart/.dir_colors/dircolors | head -n 1)

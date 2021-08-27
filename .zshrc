@@ -14,6 +14,8 @@ ZSH_THEME="my-agnoster"
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 ZSH_HIGHLIGHT_PATTERNS=('rm -rf *' 'fg=white,bold,bg=red')
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[cursor]=underline
 
 BULLETTRAIN_CONTEXT_SHOW=true
 BULLETTRAIN_TIME_SHOW=false

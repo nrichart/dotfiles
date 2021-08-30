@@ -13,6 +13,6 @@
 [submodule ".themes/dracula"]
 	path = .themes/dracula
 	url = https://github.com/dracula/gtk.git
-[submodule "/home/richart/.config/yadm/oh-my-zsh-custom/plugins/zsh-syntax-highlighting"]
-	path = /home/richart/.config/yadm/oh-my-zsh-custom/plugins/zsh-syntax-highlighting
+[submodule ".config/yadm/oh-my-zsh-custom/plugins/zsh-syntax-highlighting"]
+	path = .config/yadm/oh-my-zsh-custom/plugins/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git

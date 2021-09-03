@@ -18,10 +18,10 @@ fi
 find "$BOOTSTRAP_D" -type f -o -type l | sort | while IFS= read -r bootstrap; do
     echo "Executing '${bootstrap}"
     if [[ -x "${bootstrap}" && ! "${bootstrap}" =~ "##" && ! "${bootstrap}" =~ "~$" ]]; then
-	bash "${bootstrap}"
-	retval=$?
+        bash "${bootstrap}"
+        retval=$?
 
-	if [ ${retval} -ne 0 ]; then
+        if [ ${retval} -ne 0 ]; then
             echo "Error: bootstrap '$bootstrap' failed with error code ${retval}" >&2
             exit 1
         fi

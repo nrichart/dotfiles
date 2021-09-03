@@ -1,0 +1,10 @@
+sudo apt install --yes \
+         gnome-shell-extension-caffeine \
+         gnome-shell-extension-pixelsaver \
+         gnome-shell-extension-sound-device-chooser \
+         gnome-shell-extension-shelltile \
+         gnome-shell-extension-bluetooth-quick-connect
+
+#gnome-extensions enable ShellTile@emasab.it
+#gnome-extensions enable pixel-saver@deadalnix.me
+#gnome-extensions enable sound-output-device-chooser@kgshank.net

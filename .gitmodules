@@ -16,3 +16,6 @@
 [submodule ".config/yadm/oh-my-zsh-custom/plugins/zsh-syntax-highlighting"]
 	path = .config/yadm/oh-my-zsh-custom/plugins/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+[submodule "/home/richart/.tmux/plugins/tpm"]
+	path = /home/richart/.tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm

@@ -62,7 +62,7 @@ ZSH_CUSTOM=$HOME/.config/yadm/oh-my-zsh-custom
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git debian battery pip pylint python screen themes zsh_reload zsh-syntax-highlighting z colorize colored-man-pages)
+plugins=(git debian battery pip pylint python screen themes zsh-syntax-highlighting z colorize colored-man-pages)
 
 # User configuration
 export EDITOR="emacsclient -c -a /usr/bin/emacs"
@@ -95,6 +95,8 @@ export EMAIL="nicolas.richart@epfl.ch"
 # export PATH=$HOME/opt/arcanist/bin:$PATH
 
 export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.luarocks/bin:$PATH
+
 # #export PATH=$HOME/opt/ParaView-5.2.0-Qt4-OpenGL2-MPI-Linux-64bit/bin:$PATH
 # export PATH=$HOME/opt/ParaView-5.3.0-RC1-Qt5-OpenGL2-MPI-Linux-64bit/bin:$PATH
 export PATH=$HOME/.local/share/flatpak/exports/bin:$PATH
@@ -138,3 +140,24 @@ export CCACHE_NOHASHDIR=1
 export CCACHE_COMPILERCHECK=content
 
 eval $(dircolors /home/richart/.dir_colors/dircolors | head -n 1)
+
+unset SSH_AGENT_PID
+if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
+  export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+fi
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+# __conda_setup="$('/home/richart/opt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/home/richart/opt/miniconda3/etc/profile.d/conda.sh" ]; then
+#         . "/home/richart/opt/miniconda3/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/home/richart/opt/miniconda3/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
+# <<< conda initialize <<<
+

@@ -19,3 +19,5 @@
 	path = .gitconfig.local
 [pull]
 	rebase = false
+[gitlab]
+	user = nrichart

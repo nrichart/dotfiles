@@ -11,6 +11,7 @@ ZSH_THEME="my-agnoster"
 #ZSH_THEME="bullet-train"
 #ZSH_THEME="dracula"
 #POWERLINE_PATH=short
+#ZSH_THEME="emotty"
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 ZSH_HIGHLIGHT_PATTERNS=('rm -rf *' 'fg=white,bold,bg=red')
@@ -62,7 +63,7 @@ ZSH_CUSTOM=$HOME/.config/yadm/oh-my-zsh-custom
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git debian battery pip pylint python screen themes zsh_reload zsh-syntax-highlighting z colorize colored-man-pages)
+plugins=(git debian battery pip pylint python themes zsh-syntax-highlighting z colorize colored-man-pages tmux emotty emoji)
 
 # User configuration
 export EDITOR="emacsclient -c -a /usr/bin/emacs"
@@ -138,3 +139,6 @@ export CCACHE_NOHASHDIR=1
 export CCACHE_COMPILERCHECK=content
 
 eval $(dircolors /home/richart/.dir_colors/dircolors | head -n 1)
+
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+gpgconf --launch gpg-agent

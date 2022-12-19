@@ -1,10 +1,17 @@
-sudo apt install --yes \
-         gnome-shell-extension-caffeine \
-         gnome-shell-extension-pixelsaver \
-         gnome-shell-extension-sound-device-chooser \
-         gnome-shell-extension-shelltile \
-         gnome-shell-extension-bluetooth-quick-connect
+#!/bin/bash
 
-#gnome-extensions enable ShellTile@emasab.it
-#gnome-extensions enable pixel-saver@deadalnix.me
-#gnome-extensions enable sound-output-device-chooser@kgshank.net
+sudo apt install --yes python3 python3-pip python3-virtualenv python3-gi
+
+cd $HOME/Downloads
+
+pip install --user gnome-extensions-cli
+export PATH=$HOME/.local/bin:$PATH
+
+# Tray Icons: Reloaded
+gnome-extensions-cli install 2890
+# Caffeine
+gnome-extensions-cli install 517
+# tiling-assistant
+gnome-extensions-cli install 3733
+# todo.txt
+gnome-extensions-cli install 570

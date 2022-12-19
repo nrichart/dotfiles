@@ -1,9 +1,7 @@
 [push]
     default = simple
-[color]
-    ui = auto
-[commit]
-#	gpgsign = true
+[pull]
+	rebase = false
 [gpg]
 	program = gpg2
 [core]
@@ -15,12 +13,11 @@
 	smudge = git-lfs smudge -- %f
 [rerere]
 	enabled = true
-[include]
-	path = .gitconfig.local
-[pull]
-	rebase = false
 [gitlab]
 	user = nrichart
 [user]
-	email = nicolas.richart@epfl.ch
-	name = Nicolas Richart
+    name = Nicolas Richart
+    email = nicolas.richart@epfl.ch
+    signingkey = 53C0230A
+[alias]
+    akantu-archive = !bash -c 'git archive --format=tar.gz -o ../akantu-$(cat VERSION).tar.gz --prefix=akantu-$(cat VERSION)/ master'

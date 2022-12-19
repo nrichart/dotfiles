@@ -1,0 +1,14 @@
+[push]
+    default = simple
+[pull]
+	rebase = false
+[gpg]
+	program = gpg2
+[rerere]
+	enabled = true
+[gitlab]
+	user = networms
+[user]
+    name = Nicolas Richart
+    email = networms@gmail.ch
+    signingkey = 53C0230A

@@ -96,6 +96,8 @@ export EMAIL="nicolas.richart@epfl.ch"
 # export PATH=$HOME/opt/arcanist/bin:$PATH
 
 export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.luarocks/bin:$PATH
+
 # #export PATH=$HOME/opt/ParaView-5.2.0-Qt4-OpenGL2-MPI-Linux-64bit/bin:$PATH
 # export PATH=$HOME/opt/ParaView-5.3.0-RC1-Qt5-OpenGL2-MPI-Linux-64bit/bin:$PATH
 export PATH=$HOME/.local/share/flatpak/exports/bin:$PATH
@@ -140,5 +142,28 @@ export CCACHE_COMPILERCHECK=content
 
 eval $(dircolors /home/richart/.dir_colors/dircolors | head -n 1)
 
+<<<<<<< HEAD
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 gpgconf --launch gpg-agent
+=======
+unset SSH_AGENT_PID
+if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
+  export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+fi
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+# __conda_setup="$('/home/richart/opt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/home/richart/opt/miniconda3/etc/profile.d/conda.sh" ]; then
+#         . "/home/richart/opt/miniconda3/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/home/richart/opt/miniconda3/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
+# <<< conda initialize <<<
+
+>>>>>>> 4ba35db2dbb59b40198d4fd05a1c7bd1f26e916c

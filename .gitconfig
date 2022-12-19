@@ -21,3 +21,6 @@
 	rebase = false
 [gitlab]
 	user = nrichart
+[user]
+	email = nicolas.richart@epfl.ch
+	name = Nicolas Richart

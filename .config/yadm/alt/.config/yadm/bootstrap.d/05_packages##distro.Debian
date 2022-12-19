@@ -4,10 +4,9 @@ sudo apt install --yes \
     emacs \
     ripgrep \
     python3-virtualenv python3-pip python3-flake8 \
-    clang-tidy clang-format clangd \
-    sqlite3 \
-    tmux
+    clang-tidy clang-format clangd
 
 sudo apt install --yes \
     g++ cmake libboost-dev libmumps-dev petsc-dev \
     gmsh
+    sqlite3 tmux

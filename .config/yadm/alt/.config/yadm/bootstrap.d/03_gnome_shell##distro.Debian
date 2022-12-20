@@ -1,8 +1,6 @@
 #!/bin/bash
 
-sudo apt install --yes python3 python3-pip python3-virtualenv python3-gi
-
-cd $HOME/Downloads
+sudo apt install --yes python3 python3-pip python3-virtualenv python3-gi dconf-cli
 
 pip install --user gnome-extensions-cli
 export PATH=$HOME/.local/bin:$PATH
@@ -15,3 +13,29 @@ gnome-extensions-cli install 517
 gnome-extensions-cli install 3733
 # todo.txt
 gnome-extensions-cli install 570
+# bluetooth-quick-connect
+gnome-extensions-cli install 1401
+
+## Dracula
+YADM_BASE="$(dirname ${BASH_SOURCE[0]})/.."
+
+# Gnome terminal
+cd ${YADM_BASE}/dracula/gnome-terminal
+./install.sh --install-dircolors -s Dracula -p Default
+
+# Gnome Theme
+gsettings set org.gnome.desktop.interface gtk-theme "dracula"
+gsettings set org.gnome.desktop.wm.preferences theme "Dracula"
+gsettings set org.gnome.shell.extensions.user-theme name "Dracula"
+
+# Icons
+if [ ! -d ~/.icons/Dracula ]; then
+    tmpdir_=$(mktemp -d)
+    cd "${tmpdir_}"
+    wget https://github.com/dracula/gtk/files/5214870/Dracula.zip
+    mkdir -p ~/.icons
+    cd  ~/.icons
+    unzip $tmpdir_/Dracula.zip
+    rm -rf "${tmpdir_}"
+    gsettings set org.gnome.desktop.interface icon-theme Dracula
+fi

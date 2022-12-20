@@ -5,9 +5,26 @@ sudo apt install --yes \
     ripgrep \
     python3-virtualenv python3-pip python3-flake8 \
     clang-tidy clang-format clangd \
-    nodejs
+    nodejs npm
 
 sudo apt install --yes \
     g++ cmake libboost-dev libmumps-dev petsc-dev \
     gmsh \
     sqlite3 tmux
+
+sudo apt install --yes \
+    syncthing syncthing-gtk \
+    flatpak \
+    v4l2loopback-dkms v4l2loopback-utils
+
+
+flatpak remote-add -u --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+flatpak install -u -y \
+    org.jitsi.jitsi-meet \
+    org.zotero.Zotero \
+    com.spotify.Client \
+    com.mattermost.Desktop \
+    com.slack.Slack \
+    com.obsproject.Studio \
+    org.signal.Signal

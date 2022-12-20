@@ -1,3 +1,3 @@
 #!/bin/bash
 
-yes | "$HOME"/.emacs.d/bin/doom install --no-env
+"$HOME"/.emacs.d/bin/doom install --no-env --fonts

@@ -15,12 +15,12 @@ sudo apt install --yes \
 sudo apt install --yes \
     syncthing syncthing-gtk \
     flatpak \
-    v4l2loopback-dkms v4l2loopback-utils
-
+    v4l2loopback-dkms v4l2loopback-utils \
+    mosh curl htop
 
 flatpak remote-add -u --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-flatpak install -u -y \
+flatpak install -u -y --noninteractive \
     org.jitsi.jitsi-meet \
     org.zotero.Zotero \
     com.spotify.Client \

@@ -86,7 +86,7 @@ export EMAIL="nicolas.richart@epfl.ch"
 
 # eval $(keychain --inherit any --eval --agents "gpg" -Q 53C0230A)
 
-# export PYTHONPATH=$HOME/dev/scitas/spack/lib/spack:$PYTHONPATH
+#export PYTHONPATH=$HOME/.local/lib/python3.10/site-packages
 # export PATH=$HOME/dev/scitas/spack/bin:$PATH
 
 
@@ -140,6 +140,8 @@ export CCACHE_DIR=${HOME}/.ccache
 export CCACHE_NOHASHDIR=1
 export CCACHE_COMPILERCHECK=content
 
+export TERM=xterm-direct
+
 eval $(dircolors /home/richart/.dir_colors/dircolors | head -n 1)
 
 unset SSH_AGENT_PID
@@ -147,3 +149,19 @@ if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
   export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
   gpgconf --launch gpg-agent
 fi
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/richart/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/richart/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/richart/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/richart/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+

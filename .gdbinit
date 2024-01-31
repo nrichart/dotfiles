@@ -9,7 +9,7 @@ set history save on
 
 python
 import sys
-sys.path.insert(0, '/home/richart/Downloads/eigen/debug/gdb')
+sys.path.insert(0, '/home/richart/dev/perso/eigen/debug/gdb')
 from printers import register_eigen_printers
 register_eigen_printers(None)
 end

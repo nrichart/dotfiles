@@ -29,12 +29,11 @@
  ;; display-line-numbers-type nil
 
  ;; On-demand code completion. I don't often need it.
- company-idle-delay nil
-
+ company-idle-delay 0.05
 
  lsp-enable-indentation nil
  ;; lsp-enable-on-type-formatting nil
- lsp-enable-symbol-highlighting nil
+ lsp-enable-symbol-highlighting t
  lsp-enable-file-watchers nil
 
  ;; lsp-ui-sideline is redundant with eldoc and much more invasive, so
@@ -127,11 +126,20 @@
  compilation-scroll-output 'first-error
 
  vterm-module-cmake-args "-DUSE_SYSTEM_LIBVTERM=yes"
+ ;;frame-background-mode "dark"
+
+ max-lisp-eval-depth 10000
  )
 
-(setq tramp-remote-path (quote
-                         (tramp-own-remote-path
-                          tramp-default-remote-path)))
+;; (setq tramp-remote-path (quote
+;;                          (tramp-own-remote-path
+;;                           tramp-default-remote-path)))
+
+(after! tramp (advice-add 'doom--recentf-file-truename-fn :override
+                          (defun my-recent-truename (file &rest _args)
+                            (if (or (not (file-remote-p file)) (equal "sudo" (file-remote-p file 'method)))
+                                (abbreviate-file-name (file-truename (tramp-file-local-name file)))
+                              file))))
 
 ;; https://docs.doomemacs.org/latest/modules/lang/cc/
 (setq lsp-clients-clangd-args '("-j=3"
@@ -145,13 +153,16 @@
       lsp-clients-clangd-executable "/home/richart/dev/perso/bin/clangd"
       lsp-clangd-binary-path "/home/richart/dev/perso/bin/")
 
-;; (when (featurep! +lsp)
-;;   (make-lsp-client :new-connection (lsp-tramp-connection "clangd")
-;;                    :major-modes '(c-mode c++-mode)
-;;                    :remote? t
-;;                    :server-id 'clangd-remote))
+(when (featurep! +lsp)
+  (lsp-register-client
+   (make-lsp-client :new-connection (lsp-tramp-connection "/ssh:jed:/home/richart/opt/spack-view/bin/clangd")
+                    :major-modes '(c++-mode)
+                    :remote? t
+                    :server-id 'clangd-remote)))
 
 (after! lsp-clangd (set-lsp-priority! 'clangd 1))
+(after! lsp-pylsp (set-lsp-priority! 'pylsp 2))
+(after! lsp-pyright (set-lsp-priority! 'pyright 1))
 
 (after! ccls
   (setq ccls-initialization-options '(:index (:comments 2) :completion (:detailedLabel t))
@@ -169,13 +180,6 @@
                                       )))
   )
 
-;;;(lsp-register-client
-;;; (make-lsp-client :new-connection (lsp-stdio-connection (lambda () lsp-rst-ls-command))
-;;;                  :major-modes '(rst-mode)
-;;;                  :priority -1
-;;;                  :server-id 'rst-lsp))
-;;;
-
 (add-to-list 'auto-mode-alist '("\\.F90\\'" . f90-mode))
 
 (map! "<f9>"     #'projectile-compile-project
@@ -183,23 +187,23 @@
       "M-g"      #'goto-line
       "<f7>"     #'tototxt
 
-      (:when (modulep! :editor format)
+      (:when (featurep! :editor format)
         "<f5>"     #'+format/buffer
         )
 
       ;;; tr_eemacs
-      (:when (modulep! :ui treemacs)
+      (:when (featurep! :ui treemacs)
         "<f8>"   #'+treemacs/toggle
         "<C-f8>" #'+treemacs/find-file)
 
       ;;; ivy
-      (:when (modulep! :completion ivy)
+      (:when (featurep! :completion ivy)
         :map ivy-minibuffer-map
         "TAB"    #'ivy-partial
         [tab]    #'ivy-partial)
 
       ;;; vc
-      (:when (modulep! :emacs vc)
+      (:when (featurep! :emacs vc)
         "C-x g"  #'magit-status)
       )
 
@@ -228,3 +232,13 @@
   (add-to-list 'TeX-view-program-list '("Evince" "evince --page-index=%(outpage) %o"))
   (setq TeX-view-program-selection '((output-pdf "Evince")))
   )
+
+(use-package! ellama
+  :init
+  (setopt ellama-language "English")
+  (require 'llm-ollama)
+  (setopt ellama-provider
+          (make-llm-ollama
+           :chat-model "codellama:7b-code"
+           :embedding-model "codellama:7b-code"
+           :host "192.168.195.25")))

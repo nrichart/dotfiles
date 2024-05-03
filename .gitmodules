@@ -13,3 +13,6 @@
 [submodule ".config/yadm/oh-my-zsh-custom/plugins/zsh-syntax-highlighting"]
 	path = .config/yadm/oh-my-zsh-custom/plugins/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+[submodule ".config/yadm/oh-my-zsh-custom/plugins/fast-syntax-highlighting"]
+	path = .config/yadm/oh-my-zsh-custom/plugins/fast-syntax-highlighting
+	url = https://github.com/zdharma-continuum/fast-syntax-highlighting.git

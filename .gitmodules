@@ -1,9 +1,6 @@
 [submodule ".emacs.d"]
 	path = .emacs.d
 	url = https://github.com/hlissner/doom-emacs
-[submodule ".doom.d"]
-	path = .doom.d
-	url = https://github.com/nrichart/doom-emacs-private
 [submodule ".oh-my-zsh"]
 	path = .oh-my-zsh
 	url = https://github.com/ohmyzsh/ohmyzsh.git

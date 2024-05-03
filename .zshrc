@@ -63,7 +63,7 @@ ZSH_CUSTOM=$HOME/.config/yadm/oh-my-zsh-custom
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git debian battery pip pylint python themes zsh-syntax-highlighting z colorize colored-man-pages tmux emotty emoji)
+plugins=(git debian battery pip pylint python themes zsh-syntax-highlighting z colorize colored-man-pages tmux emotty emoji lpass)
 
 # User configuration
 export EDITOR="emacsclient -c -a /usr/bin/emacs"
@@ -109,10 +109,10 @@ export XDG_DATA_DIRS=$HOME/.local/share/flatpak/exports/share:/var/lib/flatpak/e
 # source $HOME/opt/spack/share/spack/setup-env.sh
 
 source $ZSH/oh-my-zsh.sh
-
+export TERM=xterm-direct
 #export PAGER=more
 # You may need to manually set your language environment
-export LC_TIME=fr_CH.UTF-8
+#export LC_TIME=fr_CH.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then

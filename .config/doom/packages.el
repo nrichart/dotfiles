@@ -56,3 +56,4 @@
 
 (package! gptel)
 (package! ellama)
+(package! catppuccin-theme)

@@ -210,7 +210,10 @@
 (remove-hook 'doom-first-buffer-hook #'smartparens-global-mode)
 
 ;;(setq doom-theme 'doom-one)
-(setq doom-theme 'doom-dracula)
+;;(setq doom-theme 'doom-dracula)
+(setq doom-theme 'catppuccin)
+(setq catppuccin-flavor 'mocha) ;; 'frappe', 'latte, 'macchiato, or 'mocha
+(catppuccin-reload)
 
 (load! "lisp/gud-enhancement")
 

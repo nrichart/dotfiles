@@ -63,7 +63,7 @@ ZSH_CUSTOM=$HOME/.config/yadm/oh-my-zsh-custom
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git debian battery pip pylint python themes zsh-syntax-highlighting z colorize colored-man-pages tmux emotty emoji lpass)
+plugins=(git debian battery pip pylint python themes zsh-syntax-highlighting z colorize colored-man-pages emotty emoji lpass)
 
 # User configuration
 export EDITOR="emacsclient -c -a /usr/bin/emacs"

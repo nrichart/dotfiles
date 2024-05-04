@@ -7,12 +7,12 @@ set pagination off
 set confirm off
 set history save on
 
-python
-import sys
-sys.path.insert(0, '/home/richart/Downloads/eigen/debug/gdb')
-from printers import register_eigen_printers
-register_eigen_printers(None)
-end
+# python
+# import sys
+# sys.path.insert(0, '/home/richart/Downloads/eigen/debug/gdb')
+# from printers import register_eigen_printers
+# register_eigen_printers(None)
+# end
 
 #                                                                                                        
 #   STL GDB evaluators/views/utilities - 1.03

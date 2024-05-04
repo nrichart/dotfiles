@@ -21,3 +21,5 @@
     signingkey = 53C0230A
 [alias]
     akantu-archive = !bash -c 'git archive --format=tar.gz -o ../akantu-$(cat VERSION).tar.gz --prefix=akantu-$(cat VERSION)/ master'
+[init]
+	defaultBranch = main

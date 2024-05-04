@@ -1,5 +1,6 @@
 #!/bin/bash
 
+{%if yadm.distro == "Debian" %}
 sudo apt install --yes \
     emacs \
     ripgrep \
@@ -13,10 +14,14 @@ sudo apt install --yes \
     sqlite3 tmux
 
 sudo apt install --yes \
+    mosh curl htop
+
+{% yadm.hostname != 'donbot' %}
+
+sudo apt install --yes \
     syncthing syncthing-gtk \
     flatpak \
-    v4l2loopback-dkms v4l2loopback-utils \
-    mosh curl htop
+    v4l2loopback-dkms v4l2loopback-utils
 
 flatpak remote-add -u --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
@@ -28,3 +33,5 @@ flatpak install -u -y --noninteractive \
     com.slack.Slack \
     com.obsproject.Studio \
     org.signal.Signal
+{%endif%}
+{%endif%}

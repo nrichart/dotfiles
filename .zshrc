@@ -65,6 +65,8 @@ ZSH_CUSTOM=$HOME/.config/yadm/oh-my-zsh-custom
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git debian battery pip pylint python themes zsh-syntax-highlighting z colorize colored-man-pages tmux emotty emoji)
 
+# zstyle :omz:plugins:keychain agents gpg,ssh
+
 # User configuration
 export EDITOR="emacsclient -c -a /usr/bin/emacs"
 export VISUAL="emacsclient -c -a /usr/bin/emacs"
@@ -143,7 +145,7 @@ export CCACHE_COMPILERCHECK=content
 eval $(dircolors /home/richart/.dir_colors/dircolors | head -n 1)
 
 unset SSH_AGENT_PID
-if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
-  export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
-  gpgconf --launch gpg-agent
-fi
+export SSH_AUTH_SOCK=$HOME/.ssh/sockets/ssh_auth_sock_${HOST}
+export TERM=xterm-direct
+
+[ $TERM = "dumb" ] && unsetopt zle && PS1='$ '

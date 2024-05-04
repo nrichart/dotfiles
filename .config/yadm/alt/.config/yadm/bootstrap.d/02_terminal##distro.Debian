@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo apt install --yes zsh zsh-syntax-highlighting
+#sudo apt install --yes zsh zsh-syntax-highlighting
 sudo apt install --yes fonts-powerline
 sudo apt install --yes dconf-cli uuid-runtime
 

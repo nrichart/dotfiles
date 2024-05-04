@@ -7,7 +7,7 @@
 [rerere]
 	enabled = true
 [gitlab]
-	user = networms
+	user = nrichart
 [user]
     name = Nicolas Richart
     email = networms@gmail.ch

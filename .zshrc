@@ -63,7 +63,8 @@ ZSH_CUSTOM=$HOME/.config/yadm/oh-my-zsh-custom
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git debian battery pip pylint python themes zsh-syntax-highlighting z colorize colored-man-pages tmux emotty emoji)
+plugins=(git debian battery pip pylint python themes fast-syntax-highlighting z colorize colored-man-pages
+         emotty emoji lpass)
 
 # zstyle :omz:plugins:keychain agents gpg,ssh
 
@@ -88,7 +89,7 @@ export EMAIL="nicolas.richart@epfl.ch"
 
 # eval $(keychain --inherit any --eval --agents "gpg" -Q 53C0230A)
 
-# export PYTHONPATH=$HOME/dev/scitas/spack/lib/spack:$PYTHONPATH
+#export PYTHONPATH=$HOME/.local/lib/python3.10/site-packages
 # export PATH=$HOME/dev/scitas/spack/bin:$PATH
 
 
@@ -111,10 +112,10 @@ export XDG_DATA_DIRS=$HOME/.local/share/flatpak/exports/share:/var/lib/flatpak/e
 # source $HOME/opt/spack/share/spack/setup-env.sh
 
 source $ZSH/oh-my-zsh.sh
-
+export TERM=xterm-direct
 #export PAGER=more
 # You may need to manually set your language environment
-export LC_TIME=fr_CH.UTF-8
+#export LC_TIME=fr_CH.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -142,6 +143,8 @@ export CCACHE_DIR=${HOME}/.ccache
 export CCACHE_NOHASHDIR=1
 export CCACHE_COMPILERCHECK=content
 
+export TERM=xterm-direct
+
 eval $(dircolors /home/richart/.dir_colors/dircolors | head -n 1)
 
 unset SSH_AGENT_PID
@@ -149,3 +152,8 @@ export SSH_AUTH_SOCK=$HOME/.ssh/sockets/ssh_auth_sock_${HOST}
 export TERM=xterm-direct
 
 [ $TERM = "dumb" ] && unsetopt zle && PS1='$ '
+if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
+  export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+  gpgconf --launch gpg-agent
+fi
+

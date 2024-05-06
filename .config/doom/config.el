@@ -129,17 +129,40 @@
  ;;frame-background-mode "dark"
 
  max-lisp-eval-depth 10000
+
+ doom-font (font-spec :family "Fira Code" :size 14 :weight 'medium)
  )
 
-;; (setq tramp-remote-path (quote
-;;                          (tramp-own-remote-path
-;;                           tramp-default-remote-path)))
+(add-to-list 'auto-mode-alist '("\\.F90\\'" . f90-mode))
 
-(after! tramp (advice-add 'doom--recentf-file-truename-fn :override
-                          (defun my-recent-truename (file &rest _args)
-                            (if (or (not (file-remote-p file)) (equal "sudo" (file-remote-p file 'method)))
-                                (abbreviate-file-name (file-truename (tramp-file-local-name file)))
-                              file))))
+(map! "<f9>"     #'projectile-compile-project
+      "C-c ;"    #'comment-region
+      "M-g"      #'goto-line
+      "<f7>"     #'tototxt
+      "C-'"      #'iedit-mode
+
+      (:when (modulep! :editor format)
+        "<f5>"     #'+format/buffer
+        )
+
+      ;;; tr_eemacs
+      (:when (modulep! :ui treemacs)
+        "<f8>"   #'+treemacs/toggle
+        "<C-f8>" #'+treemacs/find-file)
+
+      ;;; ivy
+      (:when (modulep! :completion ivy)
+        :map ivy-minibuffer-map
+        "TAB"    #'ivy-partial
+        [tab]    #'ivy-partial)
+
+      ;;; vc
+      (:when (modulep! :emacs vc)
+        "C-x g"  #'magit-status)
+      )
+
+(remove-hook 'doom-first-buffer-hook #'smartparens-global-mode)
+
 
 ;; https://docs.doomemacs.org/latest/modules/lang/cc/
 (setq lsp-clients-clangd-args '("-j=3"
@@ -153,67 +176,49 @@
       lsp-clients-clangd-executable "/home/richart/dev/perso/bin/clangd"
       lsp-clangd-binary-path "/home/richart/dev/perso/bin/")
 
-(when (featurep! +lsp)
-  (lsp-register-client
-   (make-lsp-client :new-connection (lsp-tramp-connection "/ssh:jed:/home/richart/opt/spack-view/bin/clangd")
-                    :major-modes '(c++-mode)
-                    :remote? t
-                    :server-id 'clangd-remote)))
-
 (after! lsp-clangd (set-lsp-priority! 'clangd 1))
-(after! lsp-pylsp (set-lsp-priority! 'pylsp 2))
-(after! lsp-pyright (set-lsp-priority! 'pyright 1))
-
 (after! ccls
   (setq ccls-initialization-options '(:index (:comments 2) :completion (:detailedLabel t))
         ccls-executable "/home/richart/dev/perso/bin/ccls")
   (set-lsp-priority! 'ccls 2)) ; optional as ccls is the default in Doom
 
+(when (modulep! +lsp)
+   (lsp-register-client
+    (make-lsp-client :new-connection (lsp-tramp-connection "/sshx:donbot.local:/home/richart/dev/perso/bin/clangd")
+                     :major-modes '(c++-mode)
+                     :remote? t
+                     :server-id 'clangd-remote)))
+
+(after! lsp-pylsp (set-lsp-priority! 'pylsp 2))
+(after! lsp-pyright (set-lsp-priority! 'pyright 1))
+
 (after! eglot
   :config
   (add-hook 'f90-mode-hook 'eglot-ensure)
   (set-eglot-client! 'python-mode '("pylsp"))
-  (set-eglot-client! 'cc-mode '("clangd-16" "-j=2" "--clang-tidy"))
+  (set-eglot-client! 'cc-mode '("clangd"
+                                "-j=3"
+                                "--background-index"
+                                "--clang-tidy"
+                                "--completion-style=detailed"
+                                "--header-insertion=never"
+                                "--header-insertion-decorators=0"
+                                "--malloc-trim"
+                                "--pch-storage=disk"
+                                ))
   (setq exec-path (append exec-path '(
+                                      (concat (getenv "HOME") "/dev/perso/bin/") ;; clangd
                                       (concat (getenv "HOME") "/.local/bin/") ;; pyls
                                       (concat (getenv "HOME") "/.luarocks/bin/") ;; tex
                                       )))
   )
 
-(add-to-list 'auto-mode-alist '("\\.F90\\'" . f90-mode))
-
-(map! "<f9>"     #'projectile-compile-project
-      "C-c ;"    #'comment-region
-      "M-g"      #'goto-line
-      "<f7>"     #'tototxt
-
-      (:when (featurep! :editor format)
-        "<f5>"     #'+format/buffer
-        )
-
-      ;;; tr_eemacs
-      (:when (featurep! :ui treemacs)
-        "<f8>"   #'+treemacs/toggle
-        "<C-f8>" #'+treemacs/find-file)
-
-      ;;; ivy
-      (:when (featurep! :completion ivy)
-        :map ivy-minibuffer-map
-        "TAB"    #'ivy-partial
-        [tab]    #'ivy-partial)
-
-      ;;; vc
-      (:when (featurep! :emacs vc)
-        "C-x g"  #'magit-status)
-      )
-
-(remove-hook 'doom-first-buffer-hook #'smartparens-global-mode)
-
 ;;(setq doom-theme 'doom-one)
 ;;(setq doom-theme 'doom-dracula)
 (setq doom-theme 'catppuccin)
-(setq catppuccin-flavor 'mocha) ;; 'frappe', 'latte, 'macchiato, or 'mocha
-(catppuccin-reload)
+(after! catppuccin
+  (setq catppuccin-flavor 'mocha) ;; 'frappe', 'latte, 'macchiato, or 'mocha
+  (catppuccin-reload))
 
 (load! "lisp/gud-enhancement")
 
@@ -236,6 +241,22 @@
   (setq TeX-view-program-selection '((output-pdf "Evince")))
   )
 
+;;(add-to-list 'tramp-connection-properties
+;;             (list (regexp-quote "/sshx:donbot.local:")
+;;                   "remote-shell" "/usr/bin/zsh"))
+
+;; (use-package! tramp
+;;   (add-to-list 'tramp-remote-path "/home/richart/opt/spack-view/bin"))
+
+
+;; (after! gptel
+;;  (setq-default
+;;  gptel-model "mistral:latest"
+;;  gptel-backend (gptel-make-ollama "Ollama"
+;;                  :host "localhost:11434"
+;;                  :stream t
+;;                  :models '("mistral:latest")))
+
 (use-package! ellama
   :init
   (setopt ellama-language "English")
@@ -245,3 +266,13 @@
            :chat-model "codellama:7b-code"
            :embedding-model "codellama:7b-code"
            :host "192.168.195.25")))
+
+(let ((alternatives '("doom-emacs-bw-light.svg"
+                      "doom-emacs-flugo-slant_out_purple-small.png"
+                      "doom-emacs-flugo-slant_out_bw-small.png")))
+  (setq fancy-splash-image
+        (concat doom-user-dir "splash/"
+                (nth (random (length alternatives)) alternatives))))
+
+(after! ligatures
+  (ligature-set-ligatures '(c++mode) '("->", "and", "or", "!=", "==", "lambda", "::")))

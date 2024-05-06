@@ -131,6 +131,10 @@
  max-lisp-eval-depth 10000
 
  doom-font (font-spec :family "Fira Code" :size 14 :weight 'medium)
+ fancy-splash-image (concat doom-user-dir "splash/doom-emacs-color.png")
+ tramp-remote-path (quote
+                    (tramp-own-remote-path
+                     tramp-default-remote-path))
  )
 
 (add-to-list 'auto-mode-alist '("\\.F90\\'" . f90-mode))
@@ -182,12 +186,6 @@
         ccls-executable "/home/richart/dev/perso/bin/ccls")
   (set-lsp-priority! 'ccls 2)) ; optional as ccls is the default in Doom
 
-(when (modulep! +lsp)
-   (lsp-register-client
-    (make-lsp-client :new-connection (lsp-tramp-connection "/sshx:donbot.local:/home/richart/dev/perso/bin/clangd")
-                     :major-modes '(c++-mode)
-                     :remote? t
-                     :server-id 'clangd-remote)))
 
 (after! lsp-pylsp (set-lsp-priority! 'pylsp 2))
 (after! lsp-pyright (set-lsp-priority! 'pyright 1))
@@ -267,12 +265,9 @@
            :embedding-model "codellama:7b-code"
            :host "192.168.195.25")))
 
-(let ((alternatives '("doom-emacs-bw-light.svg"
-                      "doom-emacs-flugo-slant_out_purple-small.png"
-                      "doom-emacs-flugo-slant_out_bw-small.png")))
-  (setq fancy-splash-image
-        (concat doom-user-dir "splash/"
-                (nth (random (length alternatives)) alternatives))))
+;;(let ((alternatives '("doom-emacs-bw-light.svg"
+;;                      "doom-emacs-flugo-slant_out_purple-small.png"
+;;                      "doom-emacs-flugo-slant_out_bw-small.png")))
 
 (after! ligatures
   (ligature-set-ligatures '(c++mode) '("->", "and", "or", "!=", "==", "lambda", "::")))

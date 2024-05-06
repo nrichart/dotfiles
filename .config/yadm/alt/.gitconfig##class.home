@@ -12,3 +12,8 @@
     name = Nicolas Richart
     email = networms@gmail.ch
     signingkey = 53C0230A
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

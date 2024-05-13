@@ -42,14 +42,12 @@
  lsp-ui-peek-enable t
  lsp-ui-peek-always-show nil
 
- ;;lsp-ui-flycheck-enable t
- ;;lsp-ui-flycheck-live-reporting t
+ lsp-ui-flycheck-enable t
+ lsp-ui-flycheck-live-reporting t
+
  lsp-pylsp-configuration-sources ["blake"]
  lsp-pylsp-plugins-flake8-enabled t
  lsp-pylsp-plugins-pycodestyle-enabled nil
-
- lsp-ui-flycheck-enable t
- lsp-ui-flycheck-live-reporting t
 
  lsp-ui-doc-enable nil
 
@@ -81,6 +79,8 @@
  lsp-tex-server 'digestif
  lsp-disabled-clients '(ccls)
 
+ +format-with-lsp t
+
  ;; Disable help mouse-overs for mode-line segments (i.e. :help-echo text).
  ;; They're generally unhelpful and only add confusing visual clutter.
  mode-line-default-help-echo nil
@@ -95,7 +95,7 @@
                    (awk-mode . "awk")
                    (other . "doom")))
 
- ;; clang-format-executable "clang-format-14"
+ clang-format-executable "clang-format-16"
 
  todotxt-file "/home/richart/Clouds/Syncthing/todo/todo.txt"
  org-roam-directory "/home/richart/Clouds/Syncthing/roam/"
@@ -149,7 +149,15 @@
         "<f5>"     #'+format/buffer
         )
 
-      ;;; tr_eemacs
+      (:when (modulep! :ui window-select)
+        "C-x <left>"     #'windmove-left
+        "C-x <right>"    #'windmove-right
+        "C-x <up>"       #'windmove-up
+        "C-x <down>"     #'windmove-down
+        )
+
+
+      ;;; treemacs
       (:when (modulep! :ui treemacs)
         "<f8>"   #'+treemacs/toggle
         "<C-f8>" #'+treemacs/find-file)
@@ -180,11 +188,16 @@
       lsp-clients-clangd-executable "/home/richart/dev/perso/bin/clangd"
       lsp-clangd-binary-path "/home/richart/dev/perso/bin/")
 
-(after! lsp-clangd (set-lsp-priority! 'clangd 1))
+(after! lsp-clangd
+  (set-lsp-priority! 'clangd 1)
+  (set-lsp-priority! 'clangd-tramp 1)
+  )
 (after! ccls
   (setq ccls-initialization-options '(:index (:comments 2) :completion (:detailedLabel t))
         ccls-executable "/home/richart/dev/perso/bin/ccls")
-  (set-lsp-priority! 'ccls 2)) ; optional as ccls is the default in Doom
+  (set-lsp-priority! 'ccls 2) ; optional as ccls is the default in Doom
+  (set-lsp-priority! 'ccls-tramp 2)
+  )
 
 
 (after! lsp-pylsp (set-lsp-priority! 'pylsp 2))

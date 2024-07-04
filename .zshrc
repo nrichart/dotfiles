@@ -59,12 +59,34 @@ COMPLETION_WAITING_DOTS="true"
 # Would you like to use another custom folder than $ZSH/custom?
 ZSH_CUSTOM=$HOME/.config/yadm/oh-my-zsh-custom
 
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff00ff"
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git debian battery pip pylint python themes fast-syntax-highlighting z colorize colored-man-pages
-         emotty emoji lpass)
+plugins=(
+    battery
+    colored-man-pages
+    colorize
+    debian
+    emoji
+    emotty
+    fast-syntax-highlighting
+    git
+    lpass
+    pip
+    pyenv
+    pylint
+    python
+    themes
+    z
+    zsh-autosuggestions
+)
 
 # zstyle :omz:plugins:keychain agents gpg,ssh
 
@@ -157,3 +179,7 @@ if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
   gpgconf --launch gpg-agent
 fi
 
+
+. "$HOME/.atuin/bin/env"
+
+eval "$(atuin init zsh)"

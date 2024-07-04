@@ -1,4 +1,4 @@
-;;; .doom.d/config.el -*- lexical-binding: t; -*-
+;; .doom.d/config.el -*- lexical-binding: t; -*-
 
 ;; Place your private configuration here
 
@@ -101,17 +101,6 @@
  org-roam-directory "/home/richart/Clouds/Syncthing/roam/"
 
  magit-git-executable "git"
-
- hl-todo-keyword-faces (quote
-                        (("TODO" warning bold)
-                         ("FIXME" error bold)
-                         ("HACK" font-lock-constant-face bold)
-                         ("REVIEW" font-lock-keyword-face bold)
-                         ("NOTE" success bold)
-                         ("DEPRECATED" font-lock-doc-face bold)
-                         ("\\todo" warning bold)
-                         ("\\warning" warning bold)
-                         ("\\deprecated" font-lock-doc-face bold)))
 
  safe-local-variable-values (quote
                              ((c-file-style . akantu)

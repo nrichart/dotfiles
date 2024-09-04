@@ -31,16 +31,16 @@
  ;; On-demand code completion. I don't often need it.
  company-idle-delay 0.05
 
- lsp-enable-indentation nil
+ ;;lsp-enable-indentation nil
  ;; lsp-enable-on-type-formatting nil
- lsp-enable-symbol-highlighting t
- lsp-enable-file-watchers nil
+ ;;lsp-enable-symbol-highlighting t
+ ;;lsp-enable-file-watchers nil
 
  ;; lsp-ui-sideline is redundant with eldoc and much more invasive, so
  ;; disable it by default.
- lsp-ui-sideline-enable t
- lsp-ui-peek-enable t
- lsp-ui-peek-always-show nil
+ ;;lsp-ui-sideline-enable t
+ ;;lsp-ui-peek-enable t
+ ;;lsp-ui-peek-always-show nil
 
  lsp-ui-flycheck-enable t
  lsp-ui-flycheck-live-reporting t
@@ -49,7 +49,7 @@
  lsp-pylsp-plugins-flake8-enabled t
  lsp-pylsp-plugins-pycodestyle-enabled nil
 
- lsp-ui-doc-enable nil
+ ;;lsp-ui-doc-enable nil
 
  lsp-file-watch-ignored (quote
                          ("[/\\\\]\\.git$"
@@ -175,7 +175,8 @@
                                 "--malloc-trim"
                                 "--pch-storage=disk")
       lsp-clients-clangd-executable "/home/richart/dev/perso/bin/clangd"
-      lsp-clangd-binary-path "/home/richart/dev/perso/bin/")
+      lsp-clangd-binary-path "/home/richart/dev/perso/bin/"
+      lsp-glsl-executable "glsl-lsp")
 
 (after! lsp-clangd
   (set-lsp-priority! 'clangd 1)
@@ -206,6 +207,7 @@
                                 "--malloc-trim"
                                 "--pch-storage=disk"
                                 ))
+
   (setq exec-path (append exec-path '(
                                       (concat (getenv "HOME") "/dev/perso/bin/") ;; clangd
                                       (concat (getenv "HOME") "/.local/bin/") ;; pyls
@@ -273,3 +275,12 @@
 
 (after! ligatures
   (ligature-set-ligatures '(c++mode) '("->", "and", "or", "!=", "==", "lambda", "::")))
+
+;; accept completion from copilot and fallback to company
+(use-package! copilot
+  :hook (prog-mode . copilot-mode)
+  :bind (:map copilot-completion-map
+              ("<tab>" . 'copilot-accept-completion)
+              ("TAB" . 'copilot-accept-completion)
+              ("C-TAB" . 'copilot-accept-completion-by-word)
+              ("C-<tab>" . 'copilot-accept-completion-by-word)))

@@ -10,7 +10,8 @@ module.exports = {
         // default font size in pixels for all tabs
         fontSize: 12,
         // font family with optional fallbacks
-        fontFamily: 'Menlo, "Fira Code Retina", "DroidSansM Nerd Font", "Lucida Console", monospace',
+        fontFamily: '"Fira Code", "FiraCode NerdFont", PowerlineSymbols, "Symbols Nerd Font Mono", monospace',
+        
         // default font weight: 'normal' or 'bold'
         fontWeight: 'normal',
         // font weight for bold characters: 'normal' or 'bold'
@@ -148,12 +149,7 @@ module.exports = {
     //   `@company/project`
     //   `project#1.0.1`
     plugins: [//"hyper-dracula",
-        "hyper-save-windowstate",
-        "hyperlinks",
-        "hyper-tabs-enhanced",
-        "hypurr#latest",
-        "hyper-pane",
-    ],
+    "hyper-save-windowstate", "hyperlinks", "hyper-tabs-enhanced", "hypurr#latest"],
     // in development, you can create a directory under
     // `~/.hyper_plugins/local/` and include it here
     // to load it and avoid it being `npm install`ed

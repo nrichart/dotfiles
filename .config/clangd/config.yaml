@@ -1,7 +1,8 @@
 CompileFlags:
-  Add: [-Wall, -Wextra, -std=c++23]
-  Remove: [-fmodules-ts, -fmodule-mapper=*, -fdeps-format=p1689r5, -flarge-source-files]
-
+  Add: [-Wall, -Wextra, -Wno-unknown-warning-option, -std=c++23]
+  Remove: [-mcall-prologues, -fmodules-ts, -fmodule-mapper=*, -fdeps-format=p1689r5,
+           -mlongcalls, -mdisable-hardware-atomics, -fstrict-volatile-bitfields,
+           -fno-tree-switch-conversion]
 Diagnostics:
   UnusedIncludes: Strict
   MissingIncludes: Strict
@@ -14,6 +15,7 @@ Diagnostics:
         - "experimental/bits/.*"
   Suppress: 'pp_including_mainfile_in_preamble'
   ClangTidy:
+    FastCheckFilter: Loose
     Add:
       - bugprone-*
       - llvm-*
@@ -28,4 +30,10 @@ Diagnostics:
       - cppcoreguidelines-non-private-member-variables-in-classes
     CheckOptions:
       readability-identifier-naming.ClassIgnoredRegex: ".*_[vt]$"
+      readability-identifier-naming.VariableCase: lower_case
+      readability-identifier-naming.ClassCase: CamelCase
+      readability-identifier-naming.ClassMemberCase: lower_case
+      readability-identifier-naming.ClassMethodCase: camelBack
+      readability-identifier-naming.MacroDefinitionCase: UPPER_CASE
       cppcoreguidelines-macro-usage.CheckCapsOnly: true
+      cppcoreguidelines-avoid-do-while.IgnoreMacros: true

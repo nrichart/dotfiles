@@ -71,7 +71,9 @@
 
 (package! catppuccin-theme)
 
-(package! codeium :recipe (:host github :repo "Exafunction/codeium.el"))
+;;(package! codeium :recipe (:host github :repo "Exafunction/codeium.el"))
 
-(package! copilot
-  :recipe (:host github :repo "copilot-emacs/copilot.el" :files ("*.el")))
+;;(package! copilot
+;;  :recipe (:host github :repo "copilot-emacs/copilot.el" :files ("*.el")))
+(package! x86-lookup)
+(package! nasm-mode)

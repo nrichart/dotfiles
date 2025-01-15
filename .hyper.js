@@ -10,7 +10,8 @@ module.exports = {
         // default font size in pixels for all tabs
         fontSize: 12,
         // font family with optional fallbacks
-        fontFamily: 'Menlo, "Fira Code Retina", "DroidSansM Nerd Font", "Lucida Console", monospace',
+        fontFamily: '"Fira Code", "FiraCode NerdFont", PowerlineSymbols, "Symbols Nerd Font Mono", monospace',
+        
         // default font weight: 'normal' or 'bold'
         fontWeight: 'normal',
         // font weight for bold characters: 'normal' or 'bold'

@@ -1,0 +1,31 @@
+CompileFlags:
+  Add: [-Wall, -Wextra, -std=c++23]
+  Remove: [-fmodules-ts, -fmodule-mapper=*, -fdeps-format=p1689r5, -flarge-source-files]
+
+Diagnostics:
+  UnusedIncludes: Strict
+  MissingIncludes: Strict
+  Includes:
+    IgnoreHeader:
+        - "Eigen/src/.*\\.h"
+        - "H5*public.h"
+        - "xtensor/xtensor_forward.hpp"
+        - "xtensor/xslice.hpp"
+        - "experimental/bits/.*"
+  Suppress: 'pp_including_mainfile_in_preamble'
+  ClangTidy:
+    Add:
+      - bugprone-*
+      - llvm-*
+      - modernize-*
+      - mpi-*
+      - openmp-*
+      - performance-*
+      - readability-*
+    Remove:
+      - readability-identifier-length
+      - readability-magic-numbers
+      - cppcoreguidelines-non-private-member-variables-in-classes
+    CheckOptions:
+      readability-identifier-naming.ClassIgnoredRegex: ".*_[vt]$"
+      cppcoreguidelines-macro-usage.CheckCapsOnly: true

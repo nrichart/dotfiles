@@ -122,6 +122,7 @@ export EMAIL="nicolas.richart@epfl.ch"
 
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.luarocks/bin:$PATH
+export PATH=$HOME/dev/perso/bin:$PATH
 
 # #export PATH=$HOME/opt/ParaView-5.2.0-Qt4-OpenGL2-MPI-Linux-64bit/bin:$PATH
 # export PATH=$HOME/opt/ParaView-5.3.0-RC1-Qt5-OpenGL2-MPI-Linux-64bit/bin:$PATH

@@ -2,7 +2,7 @@ CompileFlags:
   Add: [-Wall, -Wextra, -Wno-unknown-warning-option, -std=c++23]
   Remove: [-mcall-prologues, -fmodules-ts, -fmodule-mapper=*, -fdeps-format=p1689r5,
            -mlongcalls, -mdisable-hardware-atomics, -fstrict-volatile-bitfields,
-           -fno-tree-switch-conversion]
+           -fno-tree-switch-conversion, -flarge-source-files]
 Diagnostics:
   UnusedIncludes: Strict
   MissingIncludes: Strict
